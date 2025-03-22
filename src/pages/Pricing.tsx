@@ -89,6 +89,13 @@ const Pricing = () => {
     setBillingPeriod(prev => prev === 'monthly' ? 'annual' : 'monthly');
   };
 
+  // Helper function to get the text color class based on option color
+  const getColorClass = (optionColor: 'blue' | 'purple' | 'green') => {
+    if (optionColor === 'blue') return 'text-taskuick-blue';
+    if (optionColor === 'purple') return 'text-taskuick-purple';
+    return 'text-taskuick-green';
+  };
+
   return (
     <div className="min-h-screen bg-taskuick-black overflow-x-hidden">
       <Header />
@@ -182,7 +189,7 @@ const Pricing = () => {
                     )}
                   >
                     {option.popular && (
-                      <div className={`absolute top-0 right-0 ${colorClasses[option.color].badge} text-white text-xs px-4 py-1 rounded-bl-lg rounded-tr-lg font-medium tracking-wide`}>
+                      <div className={cn("absolute top-0 right-0 text-white text-xs px-4 py-1 rounded-bl-lg rounded-tr-lg font-medium tracking-wide", colorClasses[option.color].badge)}>
                         POPULAR
                       </div>
                     )}
@@ -200,7 +207,7 @@ const Pricing = () => {
                         {option.features.map((feature, idx) => (
                           <div key={idx} className="flex items-start">
                             {feature.included ? (
-                              <Check className={`h-5 w-5 ${option.color === 'blue' ? 'text-taskuick-blue' : option.color === 'purple' ? 'text-taskuick-purple' : 'text-taskuick-green'} mr-3 flex-shrink-0`} />
+                              <Check className={cn("h-5 w-5 mr-3 flex-shrink-0", getColorClass(option.color))} />
                             ) : (
                               <X className="h-5 w-5 text-gray-500 mr-3 flex-shrink-0" />
                             )}
@@ -210,7 +217,7 @@ const Pricing = () => {
                       </div>
                       
                       <Link to="/contact">
-                        <button className={`w-full py-3 rounded-lg font-medium text-white transition-all duration-300 ${colorClasses[option.color].button}`}>
+                        <button className={cn("w-full py-3 rounded-lg font-medium text-white transition-all duration-300", colorClasses[option.color].button)}>
                           {option.popular ? 'Choose Professional' : `Choose ${option.name}`}
                         </button>
                       </Link>
