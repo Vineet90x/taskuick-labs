@@ -200,7 +200,7 @@ const Pricing = () => {
                         {option.features.map((feature, idx) => (
                           <div key={idx} className="flex items-start">
                             {feature.included ? (
-                              <Check className={`h-5 w-5 text-${option.color === 'blue' ? 'taskuick-blue' : option.color === 'purple' ? 'taskuick-purple' : 'taskuick-green'} mr-3 flex-shrink-0`} />
+                              <Check className={`h-5 w-5 ${option.color === 'blue' ? 'text-taskuick-blue' : option.color === 'purple' ? 'text-taskuick-purple' : 'text-taskuick-green'} mr-3 flex-shrink-0`} />
                             ) : (
                               <X className="h-5 w-5 text-gray-500 mr-3 flex-shrink-0" />
                             )}
