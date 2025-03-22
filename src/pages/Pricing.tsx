@@ -75,24 +75,24 @@ const Pricing = () => {
 
   const faqItems = [
     {
-      question: 'Are there any hidden fees?',
-      answer: 'No, we practice transparent pricing. The price we quote is the price you pay, with no surprise charges. Any potential additional costs will be clearly communicated upfront before work begins.'
+      question: "Are there any hidden fees?",
+      answer: "No, we practice transparent pricing. The price we quote is the price you pay, with no surprise charges. Any potential additional costs will be clearly communicated upfront before work begins."
     },
     {
-      question: 'Do you offer payment plans?',
-      answer: 'Yes, we offer flexible payment plans for larger projects. Typically, this involves an initial deposit followed by milestone-based payments throughout the project lifecycle.'
+      question: "Do you offer payment plans?",
+      answer: "Yes, we offer flexible payment plans for larger projects. Typically, this involves an initial deposit followed by milestone-based payments throughout the project lifecycle."
     },
     {
-      question: 'What's included in the support and maintenance?',
-      answer: 'Our support and maintenance includes bug fixes, security updates, performance monitoring, regular backups, and technical assistance. Premium support plans also include feature enhancements and 24/7 availability.'
+      question: "What's included in the support and maintenance?",
+      answer: "Our support and maintenance includes bug fixes, security updates, performance monitoring, regular backups, and technical assistance. Premium support plans also include feature enhancements and 24/7 availability."
     },
     {
-      question: 'Can I upgrade my plan later?',
-      answer: 'Absolutely! You can upgrade your plan at any time. We'll simply prorate the difference based on your current plan's remaining value and apply it to your new plan.'
+      question: "Can I upgrade my plan later?",
+      answer: "Absolutely! You can upgrade your plan at any time. We'll simply prorate the difference based on your current plan's remaining value and apply it to your new plan."
     },
     {
-      question: 'Do you offer discounts for non-profits?',
-      answer: 'Yes, we offer special pricing for non-profit organizations and educational institutions. Please contact us to discuss your specific needs and eligibility.'
+      question: "Do you offer discounts for non-profits?",
+      answer: "Yes, we offer special pricing for non-profit organizations and educational institutions. Please contact us to discuss your specific needs and eligibility."
     }
   ];
 
