@@ -129,7 +129,7 @@ const Pricing = () => {
           <div className="container mx-auto">
             {/* Billing Period Toggle */}
             <div className="flex items-center justify-center mb-16">
-              <span className={`text-${billingPeriod === 'monthly' ? 'white' : 'taskuick-gray'} mr-4`}>Monthly</span>
+              <span className={billingPeriod === 'monthly' ? 'text-white mr-4' : 'text-taskuick-gray mr-4'}>Monthly</span>
               <button
                 onClick={toggleBillingPeriod}
                 className={cn(
@@ -144,7 +144,7 @@ const Pricing = () => {
                   )}
                 ></span>
               </button>
-              <span className={`text-${billingPeriod === 'annual' ? 'white' : 'taskuick-gray'} ml-4`}>Annual <span className="bg-taskuick-green text-black text-xs px-2 py-0.5 rounded-full ml-1">Save 15%</span></span>
+              <span className={billingPeriod === 'annual' ? 'text-white ml-4' : 'text-taskuick-gray ml-4'}>Annual <span className="bg-taskuick-green text-black text-xs px-2 py-0.5 rounded-full ml-1">Save 15%</span></span>
             </div>
             
             {/* Pricing Cards */}
