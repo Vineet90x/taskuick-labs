@@ -1,17 +1,42 @@
 
 import React from 'react';
+import { Link, LinkProps } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface CommonButtonProps {
   variant?: 'primary' | 'secondary' | 'accent' | 'outline';
   size?: 'sm' | 'md' | 'lg';
   glowEffect?: boolean;
   fullWidth?: boolean;
-  as?: React.ElementType;
-  href?: string;
+  className?: string;
+  children: React.ReactNode;
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+// Button props for regular button element
+export interface ButtonProps extends CommonButtonProps, Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'as'> {
+  as?: 'button';
+  href?: never;
+  to?: never;
+}
+
+// Link props for <a> tag
+export interface AnchorButtonProps extends CommonButtonProps, Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'as'> {
+  as: 'a';
+  href: string;
+  to?: never;
+}
+
+// Router Link props for react-router-dom
+export interface RouterLinkButtonProps extends CommonButtonProps, Omit<LinkProps, 'as'> {
+  as: typeof Link;
+  to: string;
+  href?: never;
+}
+
+// Combined props type
+type CombinedButtonProps = ButtonProps | AnchorButtonProps | RouterLinkButtonProps;
+
+const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, CombinedButtonProps>(
   ({ 
     children, 
     className, 
@@ -20,7 +45,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     glowEffect = false,
     fullWidth = false,
     as: Component = 'button',
-    href,
     ...props 
   }, ref) => {
     const baseStyles = "inline-flex items-center justify-center rounded-lg font-medium transition-all duration-300 transform focus:outline-none";
@@ -45,21 +69,47 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       outline: "shadow-[0_0_10px_rgba(0,123,255,0.3)]",
     } : {};
 
-    // If Component is 'a' and href is provided, make sure it's passed correctly
-    const componentProps = Component === 'a' ? { href, ...props } : props;
-    
+    const classNames = cn(
+      baseStyles,
+      variantStyles[variant],
+      sizeStyles[size],
+      glowEffect && glowStyles[variant],
+      fullWidth && "w-full",
+      className
+    );
+
+    // For React Router Link
+    if (Component === Link) {
+      return (
+        <Component
+          className={classNames}
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          {...(props as RouterLinkButtonProps)}
+        >
+          {children}
+        </Component>
+      );
+    }
+
+    // For regular anchor tag
+    if (Component === 'a') {
+      return (
+        <Component
+          className={classNames}
+          ref={ref as React.Ref<HTMLAnchorElement>}
+          {...(props as AnchorButtonProps)}
+        >
+          {children}
+        </Component>
+      );
+    }
+
+    // For regular button
     return (
       <Component
-        ref={ref}
-        className={cn(
-          baseStyles,
-          variantStyles[variant],
-          sizeStyles[size],
-          glowEffect && glowStyles[variant],
-          fullWidth && "w-full",
-          className
-        )}
-        {...componentProps}
+        ref={ref as React.Ref<HTMLButtonElement>}
+        className={classNames}
+        {...(props as ButtonProps)}
       >
         {children}
       </Component>
