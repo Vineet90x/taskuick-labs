@@ -9,28 +9,33 @@ interface CommonButtonProps {
   glowEffect?: boolean;
   fullWidth?: boolean;
   className?: string;
-  children: React.ReactNode;
 }
 
 // Button props for regular button element
-export interface ButtonProps extends CommonButtonProps, Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'as'> {
+export interface ButtonProps extends CommonButtonProps, 
+  Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'as' | 'children'> {
   as?: 'button';
   href?: never;
   to?: never;
+  children: React.ReactNode;
 }
 
 // Link props for <a> tag
-export interface AnchorButtonProps extends CommonButtonProps, Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'as'> {
+export interface AnchorButtonProps extends CommonButtonProps, 
+  Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'as' | 'children'> {
   as: 'a';
   href: string;
   to?: never;
+  children: React.ReactNode;
 }
 
 // Router Link props for react-router-dom
-export interface RouterLinkButtonProps extends CommonButtonProps, Omit<LinkProps, 'as'> {
+export interface RouterLinkButtonProps extends CommonButtonProps, 
+  Omit<LinkProps, 'as' | 'children'> {
   as: typeof Link;
   to: string;
   href?: never;
+  children: React.ReactNode;
 }
 
 // Combined props type
@@ -106,13 +111,13 @@ const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, CombinedB
 
     // For regular button
     return (
-      <Component
+      <button
         ref={ref as React.Ref<HTMLButtonElement>}
         className={classNames}
         {...(props as ButtonProps)}
       >
         {children}
-      </Component>
+      </button>
     );
   }
 );
