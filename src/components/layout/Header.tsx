@@ -92,9 +92,9 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Updated with glassmorphism */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-16 bg-taskuick-black/95 backdrop-blur-lg z-40 animate-fade-in">
+        <div className="lg:hidden fixed inset-0 top-16 bg-taskuick-black/60 backdrop-blur-xl z-40 animate-fade-in border-t border-white/10">
           <nav className="flex flex-col items-center justify-center space-y-8 pt-16">
             {navLinks.map((link) => (
               <Link
